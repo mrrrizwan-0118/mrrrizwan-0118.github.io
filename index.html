@@ -53,7 +53,59 @@
     border-radius: 50%;
     margin-bottom: 20px;
 }
-</style>
+.container {
+    animation: fadeIn 1.2s ease;
+}
+
+.profile-photo {
+    animation: float 3s ease-in-out infinite;
+}
+
+.card {
+    animation: slideUp 1s ease;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+a {
+    transition: transform 0.3s ease;
+}
+
+a:hover {
+    transform: scale(1.08);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}</style>
 </head>
 
 <body>
