@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SocialGuard • Account Recovery Hub</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;color:#eef2ff;background:radial-gradient(circle at 10% 10%,#163b70,transparent 30%),radial-gradient(circle at 90% 20%,#39205f,transparent 30%),#070b16;min-height:100vh}a{color:inherit;text-decoration:none}.wrap{width:min(1050px,92%);margin:auto}nav{display:flex;justify-content:space-between;padding:25px 0}.logo{font-size:20px;font-weight:800}.logo b{color:#60a5fa}.nav{display:flex;gap:20px;color:#9aa6bf;font-size:14px}.hero{text-align:center;padding:70px 0 55px}.badge{display:inline-block;padding:8px 13px;border:1px solid #ffffff22;border-radius:99px;color:#c7d2fe;background:#ffffff08}h1{font-size:clamp(42px,7vw,76px);line-height:1;letter-spacing:-4px;max-width:850px;margin:22px auto}.grad{background:linear-gradient(90deg,#fff,#60a5fa,#a78bfa);color:transparent;background-clip:text}.hero p{max-width:680px;margin:auto;color:#9aa6bf;font-size:17px;line-height:1.7}.buttons{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}.btn{display:inline-block;padding:13px 19px;border-radius:13px;border:1px solid #ffffff22;font-weight:700;background:#ffffff08;cursor:pointer;color:white}.primary{background:linear-gradient(135deg,#3b82f6,#8b5cf6)}.grid,.links{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0 60px}.card,.link{background:#12192dcc;border:1px solid #ffffff1c;border-radius:22px;padding:24px;backdrop-filter:blur(15px);box-shadow:0 20px 60px #0004}.icon{font-size:28px}.card h3{margin:12px 0 8px}.card p,.link span{color:#9aa6bf;line-height:1.6;font-size:14px}.title{font-size:28px;margin:50px 0 18px}.tools{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}label{display:block;color:#cbd5e1;font-size:13px;margin:15px 0 7px}select,textarea{width:100%;padding:13px;border-radius:12px;border:1px solid #ffffff22;background:#0b1224;color:white}textarea{min-height:130px;resize:vertical}.check{display:block;margin:11px 0;color:#cbd5e1;font-size:14px}.check input{margin-right:8px}.result{display:none;margin-top:18px;padding:16px;border-radius:14px;background:#34d39914;border:1px solid #34d39944;color:#d1fae5;line-height:1.6}.link{padding:18px}.link strong{display:block;margin-bottom:6px}footer{text-align:center;color:#74809a;padding:45px 0 60px;font-size:13px}@media(max-width:760px){.nav{display:none}.grid,.links,.tools{grid-template-columns:1fr}h1{letter-spacing:-2px}}
+</style>
+</head>
+<body><div class="wrap">
+<nav><div class="logo">Social<b>Guard</b> <small>by Rizwan</small></div><div class="nav"><a href="#checker">Checker</a><a href="#steps">Steps</a><a href="#official">Official Help</a></div></nav>
+
+<section class="hero">
+<span class="badge">⚡ A real-world web project</span>
+<h1>Get your social account <span class="grad">back on track.</span></h1>
+<p>Organize what happened, find the right legitimate recovery path, and prepare a clear appeal. No fake unlocks, passwords, or bypass tricks.</p>
+<div class="buttons"><a class="btn primary" href="#checker">Start Recovery Check</a><a class="btn" href="#official">Official Resources</a></div>
+</section>
+
+<div class="grid">
+<div class="card"><div class="icon">🧭</div><h3>Smart Path</h3><p>Choose the platform and problem to get a focused recovery checklist.</p></div>
+<div class="card"><div class="icon">📝</div><h3>Appeal Builder</h3><p>Prepare a calm, concise explanation before using the official appeal process.</p></div>
+<div class="card"><div class="icon">🛡️</div><h3>Safety First</h3><p>Never enter a password, verification code, or recovery key into this site.</p></div>
+</div>
+
+<h2 class="title" id="checker">Recovery Checker</h2>
+<section class="tools">
+<div class="card">
+<label>Platform</label><select id="platform"><option>Instagram</option><option>Facebook</option><option>TikTok</option><option>X</option><option>Other</option></select>
+<label>What happened?</label><select id="problem"><option>Account disabled</option><option>Account hacked</option><option>Can't log in</option><option>Verification issue</option><option>Other</option></select>
+<label class="check"><input type="checkbox"> I still have access to my email/phone.</label>
+<label class="check"><input type="checkbox"> I know my username or account email.</label>
+<label class="check"><input type="checkbox"> I have not shared my password or code.</label>
+<button class="btn primary" onclick="showPath()">Show My Checklist</button>
+<div class="result" id="result"></div>
+</div>
+<div class="card" id="steps"><h3>Recommended order</h3><p>01 — Secure your email and phone.</p><p>02 — Use only the platform's official recovery/appeal flow.</p><p>03 — Keep your explanation short and factual.</p><p>04 — Save screenshots and reference numbers.</p><p>05 — Ignore anyone promising a guaranteed paid unlock.</p></div>
+</section>
+
+<h2 class="title" id="official">Official Help</h2>
+<div class="links">
+<a class="link" href="https://help.instagram.com/" target="_blank"><strong>📸 Instagram Help</strong><span>Official Meta help centre</span></a>
+<a class="link" href="https://www.facebook.com/help/" target="_blank"><strong>👥 Facebook Help</strong><span>Official Facebook help centre</span></a>
+<a class="link" href="https://support.tiktok.com/" target="_blank"><strong>🎵 TikTok Support</strong><span>Official TikTok support</span></a>
+</div>
+
+<h2 class="title">Appeal Draft</h2>
+<div class="card"><label>Your explanation</label><textarea id="draft" placeholder="Write a short, factual explanation here..."></textarea><button class="btn" onclick="copyDraft()">Copy Draft</button></div>
+
+<footer>SocialGuard • Built by Rizwan • HTML • CSS • JavaScript<br><br>This tool does not bypass security or guarantee account recovery.</footer>
+</div>
+<script>
+function showPath(){let p=document.getElementById('platform').value,i=document.getElementById('problem').value,r=document.getElementById('result');r.style.display='block';r.innerHTML='<b>'+p+' • '+i+'</b><br><br>1. Secure your email/phone.<br>2. Open the official '+p+' Help/Recovery page.<br>3. Follow the account-specific review or recovery flow.<br>4. Save any case/reference number.<br><br><small>Never give your password or verification code to someone claiming they can unlock the account.</small>'}
+function copyDraft(){let t=document.getElementById('draft');if(!t.value.trim())t.value='My account was disabled and I believe this may have happened by mistake. I would appreciate a review of my account and any guidance needed to restore access. Thank you.';navigator.clipboard?.writeText(t.value);alert('Draft copied. Review it before submitting.')}
+</script></body></html>
