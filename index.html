@@ -450,6 +450,27 @@ document.addEventListener("click", function (e) {
   }
 
 });
+document.querySelectorAll("a, button").forEach(function(el) {
+  const text = el.textContent.trim().toLowerCase();
+
+  if (text.includes("instagram help")) {
+    el.onclick = function() {
+      window.open("https://help.instagram.com/", "_blank");
+    };
+  }
+
+  if (text.includes("facebook help")) {
+    el.onclick = function() {
+      window.open("https://www.facebook.com/help/", "_blank");
+    };
+  }
+
+  if (text.includes("tiktok support")) {
+    el.onclick = function() {
+      window.open("https://support.tiktok.com/", "_blank");
+    };
+  }
+});
 </script>
 </body>
 </html>
