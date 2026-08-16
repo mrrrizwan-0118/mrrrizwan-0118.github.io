@@ -407,44 +407,49 @@ footer {
 
 </div>
 <script>
-const draftBox = document.querySelector("textarea");
-const copyBtn = [...document.querySelectorAll("button")]
-  .find(b => b.textContent.trim() === "Copy Draft");
+document.addEventListener("click", function (e) {
 
-if (copyBtn && draftBox) {
-  copyBtn.addEventListener("click", async () => {
-    if (!draftBox.value.trim()) {
-      draftBox.value =
-        "My account was disabled unexpectedly. I believe this may have happened by mistake. " +
-        "I have reviewed the platform's rules and would appreciate a manual review of my account. " +
-        "I am happy to follow the applicable guidelines and provide any information needed to verify ownership.";
-    }
+  const el = e.target.closest(
+    'button, a, [role="button"], .button, .btn'
+  );
 
-    await navigator.clipboard.writeText(draftBox.value);
-    copyBtn.textContent = "Copied ✓";
+  if (!el) return;
 
-    setTimeout(() => {
-      copyBtn.textContent = "Copy Draft";
-    }, 1800);
-  });
-}
+  const text = el.textContent.trim();
 
-const checkBtn = [...document.querySelectorAll("button")]
-  .find(b => b.textContent.trim() === "Show My Checklist");
-
-if (checkBtn) {
-  checkBtn.addEventListener("click", () => {
+  if (text.includes("Show My Checklist")) {
     alert(
-      "Recovery checklist:\n\n" +
+      "Recovery Checklist\n\n" +
       "1. Secure your email and phone access.\n" +
       "2. Use only the platform's official recovery or appeal page.\n" +
       "3. Keep your explanation short and factual.\n" +
       "4. Never share passwords, verification codes, or recovery keys.\n" +
       "5. Ignore anyone promising a guaranteed paid unlock."
     );
-  });
-}
-</script>
+  }
 
+  if (text.includes("Copy Draft")) {
+    const box = document.querySelector("textarea");
+
+    if (!box) return;
+
+    if (!box.value.trim()) {
+      box.value =
+        "My account was disabled unexpectedly. I believe this may have happened by mistake. " +
+        "I have reviewed the platform's rules and would appreciate a manual review of my account. " +
+        "I am happy to follow the applicable guidelines and provide any information needed to verify ownership.";
+    }
+
+    navigator.clipboard.writeText(box.value).then(function () {
+      el.textContent = "Copied ✓";
+
+      setTimeout(function () {
+        el.textContent = "Copy Draft";
+      }, 1800);
+    });
+  }
+
+});
+</script>
 </body>
 </html>
