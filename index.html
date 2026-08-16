@@ -69,13 +69,16 @@ h1 {
     line-height: 1.7;
 }
 
-.buttons {
-    margin-top: 25px;
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
 }
 
 .btn {
     display: inline-block;
-    margin: 8px;
     padding: 13px 25px;
     background: #2563eb;
     color: white;
@@ -87,6 +90,22 @@ h1 {
 .btn:hover {
     transform: translateY(-5px);
     background: #1d4ed8;
+}
+
+.instagram {
+    background: #e1306c;
+}
+
+.instagram:hover {
+    background: #c2185b;
+}
+
+.email {
+    background: #059669;
+}
+
+.email:hover {
+    background: #047857;
 }
 
 footer {
@@ -169,26 +188,32 @@ footer {
             I am learning Git, GitHub and web development.
         </p>
 
-        <div class="buttons">
+        <div class="social-links">
             <a class="btn"
                href="https://github.com/mrrrizwan-0118"
                target="_blank">
-               Visit My GitHub
-            </a>
-
-            <a class="btn"
-               href="https://www.instagram.com/mrrrizwan144"
-               target="_blank">
-               Instagram
+               🐙 GitHub
             </a>
         </div>
     </div>
 
     <div class="card">
-        <h2>Contact Me 📩</h2>
-        <p>
-            Email: rzwanmir9@gmail.com
-        </p>
+        <h2>Connect With Me 🌐</h2>
+
+        <div class="social-links">
+
+            <a class="btn instagram"
+               href="https://www.instagram.com/mrrrizwan144"
+               target="_blank">
+               📸 Instagram
+            </a>
+
+            <a class="btn email"
+               href="mailto:rzwanmir9@gmail.com">
+               📧 Email Me
+            </a>
+
+        </div>
     </div>
 
     <footer>
