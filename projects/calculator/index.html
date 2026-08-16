@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Calculator | Mir Rizwan</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a, #312e81);
+    color: white;
+}
+
+.calculator {
+    width: 330px;
+    padding: 22px;
+    border-radius: 25px;
+    background: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+}
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 18px;
+}
+
+.display {
+    width: 100%;
+    height: 75px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    margin-bottom: 18px;
+    padding: 15px;
+    text-align: right;
+    font-size: 30px;
+    color: white;
+    background: #020617;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    height: 60px;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background: #1e293b;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    background: #334155;
+}
+
+.operator {
+    background: #2563eb;
+}
+
+.clear {
+    background: #dc2626;
+}
+
+.equal {
+    background: #16a34a;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <h1>🧮 Mir Rizwan Calculator</h1>
+
+    <input type="text" class="display" id="display" value="0" readonly>
+
+    <div class="buttons">
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="deleteLast()">⌫</button>
+        <button class="operator" onclick="addValue('%')">%</button>
+        <button class="operator" onclick="addValue('/')">÷</button>
+
+        <button onclick="addValue('7')">7</button>
+        <button onclick="addValue('8')">8</button>
+        <button onclick="addValue('9')">9</button>
+        <button class="operator" onclick="addValue('*')">×</button>
+
+        <button onclick="addValue('4')">4</button>
+        <button onclick="addValue('5')">5</button>
+        <button onclick="addValue('6')">6</button>
+        <button class="operator" onclick="addValue('-')">−</button>
+
+        <button onclick="addValue('1')">1</button>
+        <button onclick="addValue('2')">2</button>
+        <button onclick="addValue('3')">3</button>
+        <button class="operator" onclick="addValue('+')">+</button>
+
+        <button class="zero" onclick="addValue('0')">0</button>
+        <button onclick="addValue('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+    </div>
+
+    <div class="footer">
+        Built by Mir Rizwan • HTML, CSS & JavaScript
+    </div>
+
+</div>
+
+<script>
+const display = document.getElementById("display");
+
+function addValue(value) {
+    if (display.value === "0") {
+        display.value = value;
+    } else {
+        display.value += value;
+    }
+}
+
+function clearDisplay() {
+    display.value = "0";
+}
+
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
+
+    if (display.value === "") {
+        display.value = "0";
+    }
+}
+
+function calculate() {
+    try {
+        display.value = Function(
+            '"use strict"; return (' + display.value + ')'
+        )();
+    } catch {
+        display.value = "Error";
+    }
+}
+</script>
+
+</body>
+</html>
