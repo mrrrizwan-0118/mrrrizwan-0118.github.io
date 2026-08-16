@@ -406,6 +406,45 @@ footer {
     </footer>
 
 </div>
+<script>
+const draftBox = document.querySelector("textarea");
+const copyBtn = [...document.querySelectorAll("button")]
+  .find(b => b.textContent.trim() === "Copy Draft");
+
+if (copyBtn && draftBox) {
+  copyBtn.addEventListener("click", async () => {
+    if (!draftBox.value.trim()) {
+      draftBox.value =
+        "My account was disabled unexpectedly. I believe this may have happened by mistake. " +
+        "I have reviewed the platform's rules and would appreciate a manual review of my account. " +
+        "I am happy to follow the applicable guidelines and provide any information needed to verify ownership.";
+    }
+
+    await navigator.clipboard.writeText(draftBox.value);
+    copyBtn.textContent = "Copied ✓";
+
+    setTimeout(() => {
+      copyBtn.textContent = "Copy Draft";
+    }, 1800);
+  });
+}
+
+const checkBtn = [...document.querySelectorAll("button")]
+  .find(b => b.textContent.trim() === "Show My Checklist");
+
+if (checkBtn) {
+  checkBtn.addEventListener("click", () => {
+    alert(
+      "Recovery checklist:\n\n" +
+      "1. Secure your email and phone access.\n" +
+      "2. Use only the platform's official recovery or appeal page.\n" +
+      "3. Keep your explanation short and factual.\n" +
+      "4. Never share passwords, verification codes, or recovery keys.\n" +
+      "5. Ignore anyone promising a guaranteed paid unlock."
+    );
+  });
+}
+</script>
 
 </body>
 </html>
