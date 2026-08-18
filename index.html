@@ -229,8 +229,13 @@ a:hover {
     transform: translateX(-120%);
     transition: transform .6s ease;
     pointer-events: none;
+    animation: projectShine 5s ease-in-out infinite;
 }
 
+@keyframes projectShine {
+    0%,100% { transform: translateX(-120%); }
+    50% { transform: translateX(120%); }
+}
 .project:hover::before {
     transform: translateX(120%);
 }
