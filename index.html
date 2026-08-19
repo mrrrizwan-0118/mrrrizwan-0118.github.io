@@ -324,7 +324,21 @@ footer {
 .skill-link:active{
   transform:scale(.97);
 }
-.project:active { transform: scale(.97); box-shadow: 0 12px 30px rgba(37,99,235,.35); } </style>
+.project:active { transform: scale(.97); box-shadow: 0 12px 30px rgba(37,99,235,.35); }
+/* Extra glow effect */
+.buttons a,
+.project a,
+.skill-link {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.buttons a:hover,
+.project a:hover,
+.skill-link:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 0 18px rgba(37,99,235,.65);
+}
+</style>
 </head>
 
 <body>
