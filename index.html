@@ -131,7 +131,7 @@ body::after {
 ========================= */
 
 .hero {
-    min-height: 88vh;
+    min-height: 70vh;
 
     display: flex;
     flex-direction: column;
@@ -679,45 +679,23 @@ footer {
 @media (max-width: 700px) {
 
     .nav-container {
-        padding: 15px 18px;
+        padding: 14px 18px;
     }
+.nav-links {
+    gap: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
+    max-width: 72vw;
+    scrollbar-width: none;
+}
 
-    .nav-links {
-        gap: 13px;
-    }
+.nav-links::-webkit-scrollbar {
+    display: none;
+}
 
-    .nav-links a {
-        font-size: 12px;
-    }
-
-    .container {
-        padding: 0 18px;
-    }
-
-    .hero {
-        min-height: 82vh;
-    }
-
-    .hero-description {
-        font-size: 16px;
-    }
-
-    section {
-        padding: 65px 0;
-    }
-
-    .section-title h2 {
-        font-size: 29px;
-    }
-
-    .about-card {
-        padding: 25px;
-    }
-
-    .profile-photo {
-        width: 135px;
-        height: 135px;
-    }
+.nav-links a {
+    font-size: 13px;
+    flex-shrink: 0;
 }
 
 </style>
