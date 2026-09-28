@@ -1,13 +1,23 @@
-<!DOCTYPE html>
+[28/09/2026 17:13] Rizwan: <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mir Rizwan | Personal Portfolio</title>
+<title>Mir Rizwan | Developer Portfolio</title>
+
+<meta name="description"
+content="Mir Rizwan — Web developer, programmer and creator. Explore my projects, skills and journey.">
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -16,165 +26,608 @@ html {
 }
 
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    text-align: center;
-    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050816;
+    color: #f8fafc;
     overflow-x: hidden;
-
-    background:
-        radial-gradient(circle at 20% 20%, #162d72 0%, transparent 30%),
-        radial-gradient(circle at 80% 30%, #30105c 0%, transparent 30%),
-        radial-gradient(circle at 50% 90%, #063b48 0%, transparent 35%),
-        #050711;
 }
 
-/* Animated background */
+
+/* =========================
+   BACKGROUND
+========================= */
+
 body::before,
 body::after {
     content: "";
     position: fixed;
-    width: 350px;
-    height: 350px;
+    width: 420px;
+    height: 420px;
     border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.35;
+    filter: blur(150px);
+    opacity: 0.16;
     z-index: -1;
-    animation: float 8s ease-in-out infinite alternate;
+    pointer-events: none;
 }
 
 body::before {
-    background: #1769ff;
-    top: 5%;
-    left: -120px;
+    background: #2563eb;
+    top: -180px;
+    left: -180px;
 }
 
 body::after {
-    background: #8b2cff;
-    right: -120px;
-    bottom: 5%;
-    animation-delay: 2s;
+    background: #7c3aed;
+    right: -180px;
+    bottom: -180px;
 }
 
-@keyframes float {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-    to {
-        transform: translate(80px, 40px) scale(1.25);
-    }
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background: rgba(5, 8, 22, 0.78);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
 }
+
+.nav-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 17px 25px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: #60a5fa;
+}
+
+.logo span {
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.25s;
+}
+
+.nav-links a:hover {
+    color: #60a5fa;
+}
+
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container {
-    max-width: 850px;
+    max-width: 1050px;
     margin: auto;
-    padding: 55px 20px;
+    padding: 0 25px;
 }
 
-/* Profile photo — SIZE KEPT SAME */
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 88vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
 .profile-photo {
     width: 150px;
     height: 150px;
+
     object-fit: cover;
     border-radius: 50%;
+
+    padding: 4px;
+
+    border: 2px solid #3b82f6;
+
+    box-shadow:
+        0 0 25px rgba(59,130,246,0.55),
+        0 0 70px rgba(59,130,246,0.18);
+
+    margin-bottom: 28px;
+
+    animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-9px);
+    }
+}
+
+.status {
+    display: inline-block;
+
+    padding: 8px 15px;
     margin-bottom: 20px;
 
-    border: 3px solid #2563eb;
-    box-shadow:
-        0 0 15px #2563eb,
-        0 0 35px rgba(37, 99, 235, 0.6);
+    border-radius: 50px;
 
-    animation: photoGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes photoGlow {
-    from {
-        box-shadow: 0 0 12px #2563eb;
-    }
-    to {
-        box-shadow:
-            0 0 20px #2563eb,
-            0 0 45px rgba(37, 99, 235, 0.7);
-    }
-}
-
-h1 {
-    font-size: 46px;
-    margin: 5px 0 10px;
-}
-
-.subtitle {
     color: #60a5fa;
-    font-size: 18px;
-    margin-bottom: 35px;
+    background: rgba(59,130,246,0.08);
+
+    border: 1px solid rgba(96,165,250,0.2);
+
+    font-size: 13px;
 }
 
-.card {
-    margin: 25px 0;
-    padding: 30px;
-    border-radius: 20px;
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.05;
 
-    background: rgba(15, 23, 42, 0.72);
-    border: 1px solid rgba(96, 165, 250, 0.18);
+    margin-bottom: 20px;
+}
 
-    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+.gradient {
+    background: linear-gradient(
+        90deg,
+        #60a5fa,
+        #a78bfa
+    );
 
-    backdrop-filter: blur(12px);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
-    animation: cardIn 1s ease both;
+.hero-description {
+    max-width: 650px;
+
+    color: #94a3b8;
+
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+    display: inline-block;
+
+    padding: 13px 23px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 700;
+
     transition: 0.3s;
 }
 
-.card:hover {
-    transform: translateY(-7px);
-    border-color: rgba(96, 165, 250, 0.5);
-    box-shadow: 0 15px 45px rgba(37,99,235,0.18);
-}
-
-@keyframes cardIn {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-h2 {
-    color: #60a5fa;
-    margin-top: 0;
-}
-
-p {
-    color: #cbd5e1;
-    line-height: 1.7;
-    font-size: 17px;
-}
-
-.buttons {
-    margin-top: 20px;
-}
-
-a {
-    display: inline-block;
-    margin: 7px;
-    padding: 12px 22px;
-    border-radius: 10px;
+.btn-primary {
+    color: white;
 
     background: #2563eb;
-    color: white;
+
+    box-shadow:
+        0 8px 25px rgba(37,99,235,0.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 12px 35px rgba(37,99,235,0.5);
+}
+
+.btn-outline {
+    color: #cbd5e1;
+
+    background: rgba(255,255,255,0.03);
+
+    border: 1px solid rgba(148,163,184,0.25);
+}
+
+.btn-outline:hover {
+    transform: translateY(-4px);
+[28/09/2026 17:13] Rizwan: color: #60a5fa;
+
+    border-color: #60a5fa;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding: 85px 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title h2 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.section-title p {
+    color: #64748b;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-card {
+    max-width: 850px;
+    margin: auto;
+
+    padding: 35px;
+
+    background: rgba(15,23,42,0.65);
+
+    border: 1px solid rgba(96,165,250,0.12);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+
+    transition: 0.3s;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+
+    border-color: rgba(96,165,250,0.35);
+}
+
+.about-card p {
+    color: #cbd5e1;
+
+    font-size: 16px;
+
+    line-height: 1.9;
+
+    margin-bottom: 15px;
+}
+
+.about-card p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================
+   JOURNEY
+========================= */
+
+.journey {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px,1fr));
+
+    gap: 20px;
+}
+
+.journey-card {
+    padding: 28px;
+
+    background: rgba(15,23,42,0.65);
+
+    border: 1px solid rgba(96,165,250,0.12);
+
+    border-radius: 18px;
+
+    transition: 0.3s;
+}
+
+.journey-card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(96,165,250,0.4);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.25);
+}
+
+.journey-icon {
+    font-size: 28px;
+    margin-bottom: 18px;
+}
+
+.journey-card h3 {
+    margin-bottom: 10px;
+}
+
+.journey-card p {
+    color: #94a3b8;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+
+/* =========================
+   PROJECTS
+========================= */
+
+.projects {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px,1fr));
+
+    gap: 22px;
+}
+
+.project {
+    position: relative;
+
+    padding: 28px;
+
+    border-radius: 20px;
+
+    background: rgba(15,23,42,0.65);
+
+    border: 1px solid rgba(96,165,250,0.12);
+
+    overflow: hidden;
+
+    transition: 0.35s;
+}
+
+.project::before {
+    content: "";
+
+    position: absolute;
+
+    width: 200px;
+    height: 200px;
+
+    background: #2563eb;
+
+    filter: blur(100px);
+
+    opacity: 0;
+
+    top: -100px;
+    right: -100px;
+
+    transition: 0.35s;
+}
+
+.project:hover {
+    transform: translateY(-8px);
+
+    border-color:
+        rgba(96,165,250,0.45);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.28);
+}
+
+.project:hover::before {
+    opacity: 0.12;
+}
+
+.project-icon {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 13px;
+
+    background:
+        rgba(37,99,235,0.12);
+
+    color: #60a5fa;
+
+    font-size: 23px;
+
+    margin-bottom: 20px;
+}
+
+.project h3 {
+    font-size: 20px;
+
+    margin-bottom: 12px;
+}
+
+.project p {
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-bottom: 22px;
+}
+
+.project-link {
+    display: inline-block;
+
+    color: #60a5fa;
+
     text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+.project-link:hover {
+    color: white;
+
+    transform: translateX(4px);
+}
+
+
+/* =========================
+   SKILLS
+========================= */
+
+.skills {
+    max-width: 850px;
+    margin: auto;
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+.skill-link {
+    display: inline-block;
+
+    padding: 11px 18px;
+
+    border-radius: 50px;
+
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    background:
+        rgba(30,41,59,0.75);
+
+    border: 1px solid
+        rgba(96,165,250,0.14);
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.skill-link:hover {
+    transform: translateY(-4px);
+
+    color: #60a5fa;
+
+    border-color: #60a5fa;
+
+    box-shadow:
+        0 10px 25px rgba(37,99,235,0.18);
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-box {
+    max-width: 750px;
+
+    margin: auto;
+
+    text-align: center;
+
+    padding: 40px 25px;
+
+    background:
+        rgba(15,23,42,0.65);
+
+    border:
+        1px solid rgba(96,165,250,0.12);
+[28/09/2026 17:13] Rizwan: border-radius: 22px;
+}
+
+.contact-box p {
+    color: #94a3b8;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+.social-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.social {
+    display: inline-block;
+
+    padding: 11px 17px;
+
+    border-radius: 10px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
     font-weight: bold;
 
     transition: 0.3s;
 }
 
-a:hover {
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 8px 25px rgba(37,99,235,0.45);
+.social:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.25);
+}
+
+.email {
+    background: #059669;
 }
 
 .instagram {
@@ -182,393 +635,645 @@ a:hover {
 }
 
 .telegram {
-    background: #229ED9;
+    background: #229ed9;
 }
 
-.email {
-    background: #059669;
-}
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
-}
-.projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-top: 25px;
+.whatsapp {
+    background: #16a34a;
 }
 
-.project {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(70, 120, 255, 0.35);
-    border-radius: 18px;
-    padding: 22px;
-    transition: 0.3s;
+.facebook {
+    background: #1877f2;
 }
 
-.project:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(37, 99, 235, 0.35);
+.snapchat {
+    background: #eab308;
+    color: #111827;
 }
 
-.project {
-    position: relative;
-    overflow: hidden;
-}
 
-.project::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(
-        120deg,
-        transparent 20%,
-        rgba(96,165,250,.18),
-        transparent 80%
-    );
-    transform: translateX(-120%);
-    transition: transform .6s ease;
-    pointer-events: none;
-    animation: projectShine 5s ease-in-out infinite;
-}
+/* =========================
+   FOOTER
+========================= */
 
-@keyframes projectShine {
-    0%,100% { transform: translateX(-120%); }
-    50% { transform: translateX(120%); }
-}
-.project:hover::before {
-    transform: translateX(120%);
-}
-
-.project a {
-    transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.project a:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(37,99,235,.35);
-}
-.project h3 {
-    margin-top: 0;
-    color: #60a5fa;
-}
-
-.project a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 18px;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-}
-.skills span {
-    background: #2563eb;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 20px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.skills span:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
-}
 footer {
-    margin-top: 45px;
+    margin-top: 30px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
     color: #64748b;
-    font-size: 14px;
+
+    font-size: 13px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.07);
 }
 
-@media (max-width: 600px) {
-    h1 {
-        font-size: 34px;
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+    .nav-container {
+        padding: 15px 18px;
     }
 
-    .subtitle {
+    .nav-links {
+        gap: 13px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+    }
+
+    .container {
+        padding: 0 18px;
+    }
+
+    .hero {
+        min-height: 82vh;
+    }
+
+    .hero-description {
         font-size: 16px;
     }
 
-    .card {
-        padding: 24px 18px;
+    section {
+        padding: 65px 0;
     }
 
-    p {
-        font-size: 15px;
+    .section-title h2 {
+        font-size: 29px;
+    }
+
+    .about-card {
+        padding: 25px;
+    }
+
+    .profile-photo {
+        width: 135px;
+        height: 135px;
     }
 }
-
-.skill-link{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:11px 18px;
-  margin:5px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:700;
-  color:#fff;
-  background:linear-gradient(135deg,#2563eb,#60a5fa);
-  border:1px solid rgba(255,255,255,.18);
-  box-shadow:0 8px 22px rgba(37,99,235,.18);
-  transition:all .25s ease;
-}
-
-.skill-link:hover{
-  transform:translateY(-5px) scale(1.04);
-  box-shadow:0 14px 30px rgba(96,165,250,.32);
-}
-
-.skill-link:active{
-  transform:scale(.97);
-}
-.project:active { transform: scale(.97); box-shadow: 0 12px 30px rgba(37,99,235,.35); }
-/* Extra glow effect */
-.buttons a,
-.project a,
-.skill-link {
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.buttons a:hover,
-.project a:hover,
-.skill-link:hover {
-  transform: translateY(-3px) scale(1.04);
-  box-shadow: 0 0 18px rgba(37,99,235,.65);
-}
-.buttons { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:12px; }
-.buttons a { min-width:130px; justify-content:center; }
-.buttons .instagram { background:#d62976; }
-.buttons .email { background:#059669; }
-.buttons .telegram { background:#229ED9; }
-@media (max-width:600px) { .buttons a { flex:1 1 130px; } }
 
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></head>
+</head>
+
 
 <body>
 
-<div class="container">
 
-    <img src="profile.jpg" alt="Mir Rizwan" class="profile-photo">
+<!-- =========================
+     NAVIGATION
+========================= -->
 
-    <h1>Hi, I'm Mir Rizwan 👋</h1>
+<nav class="navbar">
 
-    <div class="subtitle">
-        Web Development • Git • GitHub • Learning & Creating 🚀
-    </div>
+    <div class="nav-container">
 
+        <div class="logo">
+            MR<span>.</span>
+        </div>
 
-    <div class="card">
-        <h2>About Me</h2>
+        <div class="nav-links">
 
-        <p>
-            I'm Mir Rizwan, a curious learner exploring the world of
-            web development, Git and GitHub. I enjoy learning new things,
-            building projects and turning ideas into something real.
-        </p>
+            <a href="#about">About</a>
 
-        <p>
-            This is my personal space on the web — a small place where
-            I can share my work, interests and the things I'm learning.
-        </p>
-    </div>
+            <a href="#journey">Journey</a>
 
+            <a href="#projects">Projects</a>
 
-    <div class="card">
-        <h2>My Journey 🚀</h2>
+            <a href="#skills">Skills</a>
 
-        <p>
-            Currently learning HTML, CSS, Git and GitHub,
-            while improving my skills one project at a time.
-        </p>
-
-        <div class="buttons">
-
-            <a href="https://github.com/mrrrizwan-0118" target="_blank">
-                💻 GitHub
-            </a>
+            <a href="#contact">Contact</a>
 
         </div>
+
     </div>
 
-    <div class="card">
-    <h2>My Projects 🚀</h2>
+</nav>
 
-    <p>
-        Here are some of the projects I’m building while learning web development.
+
+
+<main class="container">
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <img
+        src="profile.jpg"
+        alt="Mir Rizwan"
+        class="profile-photo"
+    >
+
+    <div class="status">
+        🚀 Learning • Building • Creating
+    </div>
+
+    <h1>
+        Hi, I'm
+        <span class="gradient">
+            Mir Rizwan
+        </span>
+        👋
+    </h1>
+
+    <p class="hero-description">
+        Web development enthusiast, programmer and creator
+        exploring technology and building projects one step
+        at a time.
     </p>
+
+    <div class="hero-buttons">
+
+        <a
+            href="#projects"
+            class="btn btn-primary"
+        >
+            View My Projects
+        </a>
+
+        <a
+            href="https://github.com/mrrrizwan-0118"
+            target="_blank"
+            class="btn btn-outline"
+        >
+            GitHub →
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+    <div class="section-title">
+
+        <h2>
+            About Me
+        </h2>
+
+        <p>
+            A little about me
+        </p>
+
+    </div>
+
+
+    <div class="about-card">
+
+        <p>
+            I'm Mir Rizwan, a curious learner exploring the
+            world of web development, Git and GitHub.
+        </p>
+
+        <p>
+            I enjoy learning new technologies, building projects
+            and turning ideas into something real.
+        </p>
+
+        <p>
+            This website is my personal space on the web where
+            I share my work, interests and development journey.
+[28/09/2026 17:13] Rizwan: </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     JOURNEY
+========================= -->
+
+<section id="journey">
+
+    <div class="section-title">
+
+        <h2>
+            My Journey 🚀
+        </h2>
+
+        <p>
+            Learning and improving every day
+        </p>
+
+    </div>
+
+
+    <div class="journey">
+
+        <div class="journey-card">
+
+            <div class="journey-icon">
+                🌐
+            </div>
+
+            <h3>
+                Web Development
+            </h3>
+
+            <p>
+                Learning HTML, CSS and modern web design
+                while creating responsive websites.
+            </p>
+
+        </div>
+
+
+        <div class="journey-card">
+
+            <div class="journey-icon">
+                💻
+            </div>
+
+            <h3>
+                Programming
+            </h3>
+
+            <p>
+                Exploring programming concepts and
+                building useful applications.
+            </p>
+
+        </div>
+
+
+        <div class="journey-card">
+
+            <div class="journey-icon">
+                🔧
+            </div>
+
+            <h3>
+                Git & GitHub
+            </h3>
+
+            <p>
+                Learning version control and using GitHub
+                to publish and manage my projects.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section id="projects">
+
+    <div class="section-title">
+
+        <h2>
+            My Projects
+        </h2>
+
+        <p>
+            Things I'm building while learning
+        </p>
+
+    </div>
+
 
     <div class="projects">
 
+
+        <!-- Portfolio -->
+
         <div class="project">
-            <h3>🌐 Personal Portfolio</h3>
-            <p>My personal website built with HTML and CSS.</p>
-            <a href="https://mrrrizwan-0118.github.io/" target="_blank">
-                View Project
+
+            <div class="project-icon">
+                🌐
+            </div>
+
+            <h3>
+                Personal Portfolio
+            </h3>
+
+            <p>
+                My personal website built with HTML and CSS,
+                showcasing my skills, projects and journey.
+            </p>
+
+            <a
+                href="https://mrrrizwan-0118.github.io/"
+                target="_blank"
+                class="project-link"
+            >
+                View Project →
             </a>
+
         </div>
 
-        <div class="project">
-    <h3>🚀 Responsive Web Design</h3>
-    <p>A responsive website project focused on clean design, modern layouts and mobile-friendly development.</p>
-    <a href="https://mrrrizwan-0118.github.io/" target="_blank">View Project</a>
-</div>
+
+        <!-- Responsive Design -->
 
         <div class="project">
-            <h3>💻 GitHub Journey</h3>
-            <p>Learning Git, GitHub and building projects step by step.</p>
-            <a href="https://github.com/mrrrizwan-0118" target="_blank">
-                View GitHub
+
+            <div class="project-icon">
+                📱
+            </div>
+
+            <h3>
+                Responsive Web Design
+            </h3>
+
+            <p>
+                A web design project focused on clean layouts,
+                responsive design and mobile-friendly development.
+            </p>
+
+            <a
+                href="https://mrrrizwan-0118.github.io/"
+                target="_blank"
+                class="project-link"
+            >
+                View Project →
             </a>
+
         </div>
 
-    <div class="project">
-    <h3>🧮 CalX by (➳°ᴿᴵzwåÑ)*</h3>
-    <p>My modern calculator built with HTML, CSS and JavaScript.</p>
-    <a href="https://mrrrizwan-0118.github.io/projects/calculator/" target="_blank">
-        Open CalX
-    </a>
-</div>
-    <div class="project">
-    <h3>🛡️ SocialGuard by (➳°ᴿᴵzwåÑ)*</h3>
-    <p>
-        A modern social-media account recovery guide for users
-        dealing with disabled, locked or restricted accounts.
-    </p>
-    <a href="https://mrrrizwan-0118.github.io/projects/socialguard/" target="_blank">
-        Open SocialGuard
-    </a>
-</div>
+
+        <!-- CalX -->
+
+        <div class="project">
+
+            <div class="project-icon">
+                🧮
+            </div>
+
+            <h3>
+                CalX
+            </h3>
+
+            <p>
+                A modern calculator built using HTML, CSS
+                and JavaScript.
+            </p>
+
+            <a
+                href="https://mrrrizwan-0118.github.io/projects/calculator/"
+                target="_blank"
+                class="project-link"
+            >
+                Open CalX →
+            </a>
+
+        </div>
+
+
+        <!-- SocialGuard -->
+
+        <div class="project">
+
+            <div class="project-icon">
+                🛡️
+            </div>
+
+            <h3>
+                SocialGuard
+            </h3>
+
+            <p>
+                A social-media account recovery guide designed
+                to help users understand official recovery options.
+[28/09/2026 17:13] Rizwan: </p>
+
+            <a
+                href="https://mrrrizwan-0118.github.io/projects/socialguard/"
+                target="_blank"
+                class="project-link"
+            >
+                Open SocialGuard →
+            </a>
+
+        </div>
+
+
+        <!-- GitHub -->
+
+        <div class="project">
+
+            <div class="project-icon">
+                💻
+            </div>
+
+            <h3>
+                GitHub Journey
+            </h3>
+
+            <p>
+                My ongoing journey of learning Git, GitHub,
+                web development and building projects.
+            </p>
+
+            <a
+                href="https://github.com/mrrrizwan-0118"
+                target="_blank"
+                class="project-link"
+            >
+                View GitHub →
+            </a>
+
+        </div>
+
+
+        <!-- Future -->
+
+        <div class="project">
+
+            <div class="project-icon">
+                ✨
+            </div>
+
+            <h3>
+                More Coming Soon
+            </h3>
+
+            <p>
+                More projects and experiments will be added
+                as I continue learning and building.
+            </p>
+
+            <a
+                href="https://github.com/mrrrizwan-0118"
+                target="_blank"
+                class="project-link"
+            >
+                Follow My Journey →
+            </a>
+
+        </div>
+
     </div>
-</div>
-    <div class="card">
-        <h2>Connect With Me 🌐</h2>
+
+</section>
+
+
+
+<!-- =========================
+     SKILLS
+========================= -->
+
+<section id="skills">
+
+    <div class="section-title">
+
+        <h2>
+            Skills 🛠️
+        </h2>
 
         <p>
-            Want to connect? Find me here:
+            Technologies and tools I'm learning
         </p>
 
-        <div class="buttons">
-<a class="email" href="mailto:mirrizwan0912@gmail.com">
-📧 Email Me
-</a>
-
-<a class="instagram" href="https://www.instagram.com/mrrrizwan144" target="_blank">
-📸 Instagram
-</a>
-
-<a class="telegram" href="https://t.me/mrrrizwan_0118" target="_blank">
-✈️ Telegram
-</a>
-
-<a class="snapchat" href="https://www.snapchat.com/add/mirrzwan01_18" target="_blank">
-👻 Snapchat
-</a>
-
-<a class="whatsapp" href="https://wa.me/919055499415" target="_blank">
-🟢 WhatsApp
-</a>
-
-<a class="facebook" href="https://www.facebook.com/mrrrizwan144" target="_blank">
-📘 Facebook
-</a>
-</div>
     </div>
-    <div class="card">
-    
-    <h2>My Skills 🛠️</h2>
 
-    <p>My current skills and technologies:</p>
 
     <div class="skills">
-    
-    <a class="skill-link" href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">HTML5</a>
-    <a class="skill-link" href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">CSS3</a>
-    <a class="skill-link" href="https://git-scm.com/doc" target="_blank">Git</a>
-    <a class="skill-link" href="https://docs.github.com/" target="_blank">GitHub</a>
-    <a class="skill-link" href="https://developer.mozilla.org/en-US/docs/Learn_web_development" target="_blank">Web Development</a>
-    <a class="skill-link" href="https://docs.python.org/3/tutorial/" target="_blank">Python — Learning</a>
-            
+
+        <a
+            class="skill-link"
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+            target="_blank"
+        >
+            HTML5
+        </a>
+
+        <a
+            class="skill-link"
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+            target="_blank"
+        >
+            CSS3
+        </a>
+
+        <a
+            class="skill-link"
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+            target="_blank"
+        >
+            JavaScript
+        </a>
+
+        <a
+            class="skill-link"
+            href="https://git-scm.com/doc"
+            target="_blank"
+        >
+            Git
+        </a>
+
+        <a
+            class="skill-link"
+            href="https://docs.github.com/"
+            target="_blank"
+        >
+            GitHub
+        </a>
+
+        <a
+            class="skill-link"
+            href="https://developer.mozilla.org/en-US/docs/Learn_web_development"
+            target="_blank"
+        >
+            Web Development
+        </a>
+
+        <a
+            class="skill-link"
+            href="https://docs.python.org/3/tutorial/"
+            target="_blank"
+        >
+            Python — Learning
+        </a>
+
+        <a
+            class="skill-link"
+            href="https://termux.com/"
+            target="_blank"
+        >
+            Termux
+        </a>
+
     </div>
-</div>
 
-    <footer>
-        © 2026 Mir Rizwan • Built with HTML & CSS ❤️
-    </footer>
+</section>
 
-</div>
-<script>
-document.addEventListener("click", function (e) {
 
-  const el = e.target.closest(
-    'button, a, [role="button"], .button, .btn'
-  );
 
-  if (!el) return;
+<!-- =========================
+     CONTACT
+========================= -->
 
-  const text = el.textContent.trim();
+<section id="contact">
 
-  if (text.includes("Show My Checklist")) {
-    alert(
-      "Recovery Checklist\n\n" +
-      "1. Secure your email and phone access.\n" +
-      "2. Use only the platform's official recovery or appeal page.\n" +
-      "3. Keep your explanation short and factual.\n" +
-      "4. Never share passwords, verification codes, or recovery keys.\n" +
-      "5. Ignore anyone promising a guaranteed paid unlock."
-    );
-  }
+    <div class="section-title">
 
-  if (text.includes("Copy Draft")) {
-    const box = document.querySelector("textarea");
+        <h2>
+            Let's Connect 🌐
+        </h2>
 
-    if (!box) return;
+        <p>
+            Find me on the web
+        </p>
 
-    if (!box.value.trim()) {
-      box.value =
-        "My account was disabled unexpectedly. I believe this may have happened by mistake. " +
-        "I have reviewed the platform's rules and would appreciate a manual review of my account. " +
-        "I am happy to follow the applicable guidelines and provide any information needed to verify ownership.";
-    }
+    </div>
 
-    navigator.clipboard.writeText(box.value).then(function () {
-      el.textContent = "Copied ✓";
 
-      setTimeout(function () {
-        el.textContent = "Copy Draft";
-      }, 1800);
-    });
-  }
+    <div class="contact-box">
 
-});
-document.querySelectorAll("a, button").forEach(function(el) {
-  const text = el.textContent.trim().toLowerCase();
+        <p>
+            Want to connect, explore my projects or follow
+            my development journey?
+[28/09/2026 17:13] Rizwan: </p>
 
-  if (text.includes("instagram help")) {
-    el.onclick = function() {
-      window.open("https://help.instagram.com/", "_blank");
-    };
-  }
 
-  if (text.includes("facebook help")) {
-    el.onclick = function() {
-      window.open("https://www.facebook.com/help/", "_blank");
-    };
-  }
+        <div class="social-buttons">
 
-  if (text.includes("tiktok support")) {
-    el.onclick = function() {
-      window.open("https://support.tiktok.com/", "_blank");
-    };
-  }
-});
-</script>
-</body>
-</html>
+            <a
+                class="social email"
+                href="mailto:mirrizwan0912@gmail.com"
+            >
+                📧 Email
+            </a>
+
+            <a
+                class="social instagram"
+                href="https://www.instagram.com/mrrrizwan144"
+                target="_blank"
+            >
+                📸 Instagram
+            </a>
+
+            <a
+                class="social telegram"
+                href="https://t.me/mrrrizwan_0118"
+                target="_blank"
+            >
+                ✈️ Telegram
+            </a>
+
+            <a
+                class=
