@@ -2,377 +2,565 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>CalX | Mir Rizwan</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
 
-:root {
-    --bg: #050816;
-    --panel: rgba(15,23,42,.88);
-    --display: #020617;
-    --button: #1e293b;
-    --button-hover: #334155;
-    --text: #f8fafc;
-    --muted: #94a3b8;
-    --blue: #2563eb;
-    --purple: #7c3aed;
-    --danger: #dc2626;
-    --border: rgba(96,165,250,.18);
+:root{
+  --bg:#f1f2f4;
+  --card:#ffffff;
+  --text:#151515;
+  --muted:#777;
+  --button:#f8f8f8;
+  --button2:#eeeeef;
+  --border:rgba(0,0,0,.08);
+  --accent:#8883d8;
+  --accent2:#7772cf;
+  --shadow:0 8px 30px rgba(0,0,0,.10);
 }
 
-body.light {
-    --bg: #eef4ff;
-    --panel: rgba(255,255,255,.92);
-    --display: #f1f5f9;
-    --button: #e2e8f0;
-    --button-hover: #cbd5e1;
-    --text: #0f172a;
-    --muted: #475569;
-    --border: rgba(37,99,235,.2);
+body.dark{
+  --bg:#070b18;
+  --card:#10172a;
+  --text:#fff;
+  --muted:#9da5b8;
+  --button:#172136;
+  --button2:#202b42;
+  --border:rgba(255,255,255,.08);
+  --accent:#8c86e8;
+  --accent2:#746ed1;
+  --shadow:0 10px 35px rgba(0,0,0,.35);
 }
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,Helvetica,sans-serif;
+  transition:.25s;
 }
 
-body {
-    min-height: 100vh;
-    background:
-        radial-gradient(circle at 10% 10%, rgba(37,99,235,.18), transparent 30%),
-        radial-gradient(circle at 90% 90%, rgba(124,58,237,.18), transparent 30%),
-        var(--bg);
-    color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
-    transition: .3s;
+button,
+select,
+input{
+  font:inherit;
 }
 
-/* FULL SCREEN APP */
-
-.app {
-    min-height: 100vh;
-    width: 100%;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
+button{
+  border:0;
+  cursor:pointer;
+  color:var(--text);
 }
 
-/* HEADER */
-
-.header {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 25px;
+.app{
+  min-height:100vh;
+  width:100%;
+  max-width:1100px;
+  margin:auto;
+  padding:16px;
 }
 
-.brand h1 {
-    font-size: 32px;
-    color: #60a5fa;
+/* TOP BAR */
+
+.topbar{
+  height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.brand p {
-    color: var(--muted);
-    font-size: 13px;
-    margin-top: 4px;
+.top-left,
+.top-right{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
-.header-buttons {
-    display: flex;
-    gap: 10px;
+.icon-btn{
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:23px;
+  transition:.2s;
 }
 
-.icon-btn {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    background: var(--panel);
-    color: var(--text);
-    cursor: pointer;
-    font-size: 19px;
-    transition: .2s;
+.icon-btn:hover{
+  background:var(--button2);
 }
 
-.icon-btn:hover {
-    transform: translateY(-2px);
-    border-color: #60a5fa;
+.icon-btn.active{
+  background:var(--button2);
+  color:var(--accent);
 }
 
-/* MAIN */
-
-.main {
-    flex: 1;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 25px;
-}
-
-/* CALCULATOR */
-
-.calculator {
-    width: 100%;
-    min-height: calc(100vh - 140px);
-    padding: 30px;
-    border-radius: 28px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    box-shadow: 0 25px 80px rgba(0,0,0,.35);
-    backdrop-filter: blur(20px);
-    display: flex;
-    flex-direction: column;
+.brand{
+  font-size:21px;
+  font-weight:800;
 }
 
 /* DISPLAY */
 
-.display-area {
-    margin-bottom: 22px;
+.display{
+  min-height:190px;
+  padding:25px 12px 20px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  align-items:flex-end;
+  overflow:hidden;
 }
 
-.expression {
-    width: 100%;
-    min-height: 30px;
-    color: var(--muted);
-    font-size: 16px;
-    text-align: right;
-    overflow: hidden;
+.expression{
+  width:100%;
+  text-align:right;
+  color:var(--muted);
+  font-size:20px;
+  min-height:30px;
+  word-break:break-all;
 }
 
-.display {
-    width: 100%;
-    height: 90px;
-    border: none;
-    outline: none;
-    border-radius: 18px;
-    background: var(--display);
-    color: var(--text);
-    font-size: clamp(32px, 5vw, 52px);
-    text-align: right;
-    padding: 15px 20px;
-    border: 1px solid var(--border);
-}
-
-/* SCIENTIFIC */
-
-.scientific {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
-    margin-bottom: 12px;
-}
-
-.scientific button {
-    background: rgba(37,99,235,.12);
-    color: #60a5fa;
+.result{
+  width:100%;
+  text-align:right;
+  font-size:clamp(48px,9vw,78px);
+  font-weight:500;
+  line-height:1.05;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 /* BUTTON GRID */
 
-.buttons {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+.calculator{
+  width:100%;
 }
 
-button {
-    border: none;
-    border-radius: 16px;
-    background: var(--button);
-    color: var(--text);
-    font-size: 21px;
-    min-height: 65px;
-    cursor: pointer;
-    transition: .18s ease;
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
 }
 
-button:hover {
-    background: var(--button-hover);
-    transform: translateY(-2px);
+.btn{
+  min-height:82px;
+  border-radius:28px;
+  background:var(--button);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.8),
+    0 2px 8px rgba(0,0,0,.04);
+  font-size:28px;
+  font-weight:600;
+  transition:transform .08s,background .15s;
 }
 
-button:active {
-    transform: scale(.96);
+.btn:hover{
+  background:var(--button2);
 }
 
-.operator {
-    background: var(--blue);
-    color: white;
+.btn:active{
+  transform:scale(.94);
 }
 
-.operator:hover {
-    background: #3b82f6;
+.btn.function{
+  font-size:23px;
 }
 
-.equal {
-    background: linear-gradient(135deg,#7c3aed,#2563eb);
-    color: white;
+.btn.operator{
+  background:var(--button2);
 }
 
-.clear {
-    background: var(--danger);
-    color: white;
+.btn.equal{
+  background:var(--accent);
+  color:white;
 }
 
-.zero {
-    grid-column: span 2;
+.btn.clear{
+  font-size:22px;
 }
 
-/* HISTORY */
-
-.history {
-    min-height: calc(100vh - 140px);
-    padding: 25px;
-    border-radius: 28px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(20px);
-    display: flex;
-    flex-direction: column;
+.zero{
+  grid-column:span 2;
 }
 
-.history-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 18px;
+/* SCIENTIFIC */
+
+.scientific{
+  display:none;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+  margin-bottom:12px;
 }
 
-.history-header h2 {
-    font-size: 21px;
+body.scientific-mode .scientific{
+  display:grid;
 }
 
-.clear-history {
-    border: none;
-    background: transparent;
-    color: #60a5fa;
-    font-size: 13px;
-    cursor: pointer;
+body.scientific-mode .buttons{
+  grid-template-columns:repeat(5,1fr);
 }
 
-.history-list {
-    flex: 1;
-    overflow-y: auto;
+body.scientific-mode .zero{
+  grid-column:auto;
 }
 
-.history-item {
-    padding: 14px;
-    margin-bottom: 10px;
-    border-radius: 14px;
-    background: rgba(30,41,59,.65);
-    cursor: pointer;
-    transition: .2s;
+.scientific .btn{
+  min-height:70px;
+  border-radius:25px;
+  font-size:21px;
 }
 
-.history-item:hover {
-    transform: translateX(-3px);
-    border: 1px solid var(--border);
-}
-
-.history-expression {
-    color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 5px;
-}
-
-.history-result {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.empty {
-    color: var(--muted);
-    text-align: center;
-    margin-top: 40px;
-    font-size: 14px;
+.angle.active{
+  color:var(--accent);
+  font-weight:800;
 }
 
 /* FOOTER */
 
-.footer {
-    text-align: center;
-    padding-top: 20px;
-    color: var(--muted);
-    font-size: 12px;
+.footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  padding:18px 0 8px;
+}
+
+/* PAGES */
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.page-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:28px;
+  font-weight:800;
+  margin:18px 0 25px;
+}
+
+.back{
+  width:45px;
+  height:45px;
+  border-radius:15px;
+  background:var(--button);
+  font-size:25px;
+}
+
+/* CONVERTER */
+
+.converter-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.converter-card{
+  min-height:190px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:25px;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  font-size:22px;
+  font-weight:700;
+  transition:.2s;
+}
+    .converter-card:hover{
+  transform:translateY(-3px);
+}
+
+.converter-icon{
+  font-size:45px;
+}
+
+/* CONVERTER SCREEN */
+
+.converter-screen{
+  background:var(--card);
+  border-radius:28px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+
+.converter-screen h2{
+  margin-bottom:20px;
+}
+
+.converter-input{
+  width:100%;
+  padding:18px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:var(--button);
+  color:var(--text);
+  outline:none;
+  font-size:25px;
+}
+
+.select-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin:15px 0;
+}
+
+.converter-select{
+  width:100%;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--button);
+  color:var(--text);
+  outline:none;
+}
+
+.convert-result{
+  margin-top:18px;
+  padding:20px;
+  border-radius:20px;
+  background:var(--button2);
+  font-size:25px;
+  font-weight:700;
+}
+
+/* HISTORY */
+
+.history-list{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.history-item{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:18px;
+  border-radius:18px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.history-expression{
+  color:var(--muted);
+}
+
+.history-result{
+  font-weight:700;
+}
+
+/* SETTINGS */
+
+.settings-list{
+  background:var(--card);
+  border-radius:25px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+.setting{
+  min-height:70px;
+  padding:18px 20px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.setting:last-child{
+  border-bottom:0;
+}
+
+.setting-title{
+  font-size:18px;
+  font-weight:700;
+}
+
+.setting-sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* SWITCH */
+
+.switch{
+  width:52px;
+  height:30px;
+  border-radius:20px;
+  background:#aaa;
+  padding:3px;
+  transition:.2s;
+}
+
+.switch span{
+  display:block;
+  width:24px;
+  height:24px;
+  background:white;
+  border-radius:50%;
+  transition:.2s;
+}
+
+.switch.on{
+  background:var(--accent);
+}
+
+.switch.on span{
+  transform:translateX(22px);
+}
+
+/* MENU */
+
+.menu{
+  position:fixed;
+  top:75px;
+  right:18px;
+  width:240px;
+  background:var(--card);
+  border-radius:20px;
+  box-shadow:0 15px 45px rgba(0,0,0,.2);
+  padding:8px;
+  display:none;
+  z-index:100;
+}
+
+.menu.show{
+  display:block;
+}
+
+.menu-item{
+  width:100%;
+  padding:17px;
+  background:transparent;
+  border-radius:14px;
+  text-align:left;
+  font-size:17px;
+  font-weight:700;
+}
+
+.menu-item:hover{
+  background:var(--button2);
+}
+
+/* DESKTOP */
+
+@media(min-width:800px){
+  .app{
+    padding:18px 28px;
+  }
+
+  .display{
+    min-height:240px;
+  }
+
+  .btn{
+    min-height:92px;
+  }
+
+  .calculator{
+    max-width:850px;
+    margin:auto;
+  }
 }
 
 /* MOBILE */
 
-@media (max-width: 850px) {
+@media(max-width:650px){
+  .app{
+    padding:8px 12px 12px;
+  }
 
-    .app {
-        padding: 15px;
-    }
+  .topbar{
+    height:52px;
+  }
 
-    .main {
-        grid-template-columns: 1fr;
-    }
+  .icon-btn{
+    width:40px;
+    height:40px;
+  }
 
-    .calculator {
-        min-height: calc(100vh - 120px);
-        padding: 18px;
-    }
+  .display{
+    min-height:250px;
+  }
 
-    .history {
-        display: none;
-    }
+  .result{
+    font-size:55px;
+  }
 
-    .scientific {
-        grid-template-columns: repeat(3, 1fr);
-    }
+  .buttons{
+    gap:10px;
+  }
 
-    button {
-        min-height: 58px;
-    }
+  .btn{
+    min-height:74px;
+    border-radius:25px;
+    font-size:27px;
+  }
+
+  .scientific{
+    gap:8px;
+  }
+
+  .scientific .btn{
+    min-height:62px;
+    border-radius:22px;
+    font-size:17px;
+  }
+
+  .converter-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .converter-card{
+    min-height:155px;
+    border-radius:22px;
+    font-size:18px;
+  }
+
+  .converter-icon{
+    font-size:36px;
+  }
+
+  .page-title{
+    font-size:25px;
+  }
 }
 
-@media (max-width: 480px) {
+@media(max-width:380px){
+  .btn{
+    min-height:67px;
+  }
 
-    .brand h1 {
-        font-size: 27px;
-    }
+  .display{
+    min-height:220px;
+  }
 
-    .brand p {
-        font-size: 11px;
-    }
-
-    .calculator {
-        border-radius: 22px;
-    }
-
-    .display {
-        height: 78px;
-        font-size: 34px;
-    }
-
-    .buttons {
-        gap: 8px;
-    }
-
-    button {
-        min-height: 55px;
-        border-radius: 13px;
-        font-size: 18px;
-    }
-
-    .scientific {
-        gap: 7px;
-    }
-
-    .scientific button {
-        min-height: 45px;
-        font-size: 14px;
-    }
+  .result{
+    font-size:48px;
+  }
 }
 </style>
 </head>
@@ -381,506 +569,587 @@ button:active {
 
 <div class="app">
 
-    <header class="header">
+<!-- MAIN CALCULATOR -->
 
-        <div class="brand">
-            <h1>CalX</h1>
-            <p>Smart Calculator • by Mir Rizwan</p>
-        </div>
+<section id="calculatorPage" class="page active">
 
-        <div class="header-buttons">
-            <button class="icon-btn" onclick="toggleTheme()" title="Theme">
-                ☀
-            </button>
+  <div class="topbar">
 
-            <button class="icon-btn" onclick="toggleFullscreen()" title="Fullscreen">
-                ⛶
-            </button>
-        </div>
+    <div class="top-left">
 
-    </header>
+      <!-- SCIENTIFIC SWITCH -->
+      <button class="icon-btn" id="modeBtn"
+              title="Normal / Scientific"
+              onclick="toggleScientific()">
+        √ π
+      </button>
 
+      <!-- CONVERTER -->
+      <button class="icon-btn"
+              title="Unit Converter"
+              onclick="showConverter()">
+        ▦
+      </button>
 
-    <main class="main">
+    </div>
 
-        <!-- CALCULATOR -->
+    <div class="top-right">
 
-        <section class="calculator">
+      <!-- FULLSCREEN -->
+      <button class="icon-btn"
+              title="Fullscreen"
+              onclick="toggleFullscreen()">
+        ⛶
+      </button>
 
-            <div class="display-area">
+      <!-- MENU -->
+      <button class="icon-btn"
+              title="Menu"
+              onclick="toggleMenu()">
+        ⋮
+      </button>
 
-                <div class="expression" id="expression"></div>
+    </div>
 
-                <input
-                    id="display"
-                    class="display"
-                    value="0"
-                    readonly
-                >
+  </div>
 
-            </div>
+  <div class="display">
+    <div class="expression" id="expression"></div>
+    <div class="result" id="result">0</div>
+  </div>
 
+  <!-- SCIENTIFIC BUTTONS -->
 
-            <!-- SCIENTIFIC BUTTONS -->
+  <div class="scientific">
 
-            <div class="scientific">
+    <button class="btn function" onclick="scientificFunction('sin')">sin</button>
+    <button class="btn function" onclick="scientificFunction('cos')">cos</button>
+    <button class="btn function" onclick="scientificFunction('tan')">tan</button>
 
-                <button onclick="scientific('sin')">sin</button>
-                <button onclick="scientific('cos')">cos</button>
-                <button onclick="scientific('tan')">tan</button>
+    <button class="btn function angle active"
+            id="radBtn"
+            onclick="setAngle('rad')">
+      rad
+    </button>
 
-                <button onclick="scientific('sqrt')">√</button>
-                <button onclick="scientific('square')">x²</button>
-                <button onclick="scientific('log')">log</button>
+    <button class="btn function angle"
+            id="degBtn"
+            onclick="setAngle('deg')">
+      deg
+    </button>
 
-                <button onclick="scientific('ln')">ln</button>
-                <button onclick="appendValue('Math.PI')">π</button>
-                <button onclick="appendValue('Math.E')">e</button>
+    <button class="btn function" onclick="scientificFunction('log')">log</button>
+    <button class="btn function" onclick="scientificFunction('ln')">ln</button>
+    <button class="btn function" onclick="addValue('(')">(</button>
+    <button class="btn function" onclick="addValue(')')">)</button>
+    <button class="btn function" onclick="scientificFunction('inv')">inv</button>
 
-                <button onclick="scientific('inverse')">1/x</button>
-                <button onclick="scientific('factorial')">x!</button>
-                <button onclick="scientific('abs')">|x|</button>
+    <button class="btn function" onclick="scientificFunction('factorial')">!</button>
+    <button class="btn function" onclick="addValue('^')">^</button>
+    <button class="btn function" onclick="scientificFunction('sqrt')">√</button>
+    <button class="btn function" onclick="addValue('π')">π</button>
+    <button class="btn function" onclick="addValue('e')">e</button>
 
-            </div>
+  </div>
 
+  <!-- NORMAL BUTTONS -->
 
-            <!-- BASIC BUTTONS -->
+  <div class="buttons">
 
-            <div class="buttons">
+    <button class="btn clear" onclick="clearAll()">AC</button>
+    <button class="btn function" onclick="percent()">%</button>
+    <button class="btn function" onclick="backspace()">⌫</button>
+    <button class="btn operator" onclick="addValue('÷')">÷</button>
 
-                <button class="clear" onclick="clearDisplay()">C</button>
+    <button class="btn" onclick="addValue('7')">7</button>
+    <button class="btn" onclick="addValue('8')">8</button>
+    <button class="btn" onclick="addValue('9')">9</button>
+    <button class="btn operator" onclick="addValue('×')">×</button>
 
-                <button onclick="deleteLast()">⌫</button>
+    <button class="btn" onclick="addValue('4')">4</button>
+    <button class="btn" onclick="addValue('5')">5</button>
+    <button class="btn" onclick="addValue('6')">6</button>
+    <button class="btn operator" onclick="addValue('-')">−</button>
 
-                <button onclick="percentage()">%</button>
+    <button class="btn" onclick="addValue('1')">1</button>
+    <button class="btn" onclick="addValue('2')">2</button>
+    <button class="btn" onclick="addValue('3')">3</button>
+    <button class="btn operator" onclick="addValue('+')">+</button>
 
-                <button class="operator" onclick="appendValue('/')">
-                    ÷
-                    </button>
+    <button class="btn zero" onclick="addValue('0')">0</button>
+    <button class="btn" onclick="addValue('.')">.</button>
+    <button class="btn equal" onclick="calculate()">=</button>
 
+  </div>
 
-                <button onclick="appendValue('7')">7</button>
-                <button onclick="appendValue('8')">8</button>
-                <button onclick="appendValue('9')">9</button>
+  <div class="footer">
+    Built by Mir Rizwan
+  </div>
 
-                <button class="operator" onclick="appendValue('*')">
-                    ×
-                </button>
-
-
-                <button onclick="appendValue('4')">4</button>
-                <button onclick="appendValue('5')">5</button>
-                <button onclick="appendValue('6')">6</button>
-
-                <button class="operator" onclick="appendValue('-')">
-                    −
-                </button>
-
-
-                <button onclick="appendValue('1')">1</button>
-                <button onclick="appendValue('2')">2</button>
-                <button onclick="appendValue('3')">3</button>
-
-                <button class="operator" onclick="appendValue('+')">
-                    +
-                </button>
-
-
-                <button class="zero" onclick="appendValue('0')">
-                    0
-                </button>
-
-                <button onclick="appendValue('.')">
-                    .
-                </button>
-
-                <button class="equal" onclick="calculate()">
-                    =
-                </button>
-
-            </div>
-
-        </section>
+</section>
 
 
-        <!-- HISTORY -->
+<!-- CONVERTER CATEGORY PAGE -->
 
-        <aside class="history">
+<section id="converterPage" class="page">
 
-            <div class="history-header">
+  <div class="page-title">
+    <button class="back" onclick="showCalculator()">←</button>
+    Unit Converter
+  </div>
 
-                <h2>History</h2>
+  <div class="converter-grid">
 
-                <button
-                    class="clear-history"
-                    onclick="clearHistory()">
-                    Clear
-                </button>
+    <button class="converter-card" onclick="openConverter('currency')">
+      <span class="converter-icon">¥</span>
+      Currency
+    </button>
+    <button class="converter-card" onclick="openConverter('length')">
+      <span class="converter-icon">↔</span>
+      Length
+    </button>
 
-            </div>
+    <button class="converter-card" onclick="openConverter('area')">
+      <span class="converter-icon">▣</span>
+      Area
+    </button>
 
-            <div id="historyList" class="history-list">
-                <div class="empty">
-                    No calculations yet
-                </div>
-            </div>
+    <button class="converter-card" onclick="openConverter('volume')">
+      <span class="converter-icon">◇</span>
+      Volume
+    </button>
 
-        </aside>
+    <button class="converter-card" onclick="openConverter('weight')">
+      <span class="converter-icon">⚖</span>
+      Weight
+    </button>
 
-    </main>
+    <button class="converter-card" onclick="openConverter('temperature')">
+      <span class="converter-icon">♨</span>
+      Temperature
+    </button>
+
+    <button class="converter-card" onclick="openConverter('speed')">
+      <span class="converter-icon">◉</span>
+      Speed
+    </button>
+
+    <button class="converter-card" onclick="openConverter('pressure')">
+      <span class="converter-icon">◌</span>
+      Pressure
+    </button>
+
+    <button class="converter-card" onclick="openConverter('power')">
+      <span class="converter-icon">ϟ</span>
+      Power
+    </button>
+
+    <button class="converter-card" onclick="openConverter('number')">
+      <span class="converter-icon">01</span>
+      Number System
+    </button>
+
+  </div>
+
+</section>
 
 
-    <footer class="footer">
-        CalX © 2026 • Built by Mir Rizwan
-    </footer>
+<!-- INDIVIDUAL CONVERTER -->
+
+<section id="converterToolPage" class="page">
+
+  <div class="page-title">
+    <button class="back" onclick="showConverter()">←</button>
+    <span id="converterTitle">Converter</span>
+  </div>
+
+  <div class="converter-screen">
+
+    <input
+      id="convertInput"
+      class="converter-input"
+      type="number"
+      placeholder="Enter value"
+      oninput="performConversion()"
+    >
+
+    <div class="select-row">
+
+      <select id="fromUnit"
+              class="converter-select"
+              onchange="performConversion()">
+      </select>
+
+      <select id="toUnit"
+              class="converter-select"
+              onchange="performConversion()">
+      </select>
+
+    </div>
+
+    <div class="convert-result" id="convertResult">
+      Enter a value
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- HISTORY -->
+
+<section id="historyPage" class="page">
+
+  <div class="page-title">
+    <button class="back" onclick="showCalculator()">←</button>
+    History
+  </div>
+
+  <div id="historyList" class="history-list"></div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settingsPage" class="page">
+
+  <div class="page-title">
+    <button class="back" onclick="showCalculator()">←</button>
+    Settings
+  </div>
+
+  <div class="settings-list">
+
+    <div class="setting">
+      <div>
+        <div class="setting-title">Dark theme</div>
+        <div class="setting-sub">Switch between light and dark mode</div>
+      </div>
+
+      <button class="switch" id="themeSwitch"
+              onclick="toggleTheme()">
+        <span></span>
+      </button>
+    </div>
+
+    <div class="setting">
+      <div>
+        <div class="setting-title">Fullscreen</div>
+        <div class="setting-sub">Use the entire screen</div>
+      </div>
+
+      <button class="icon-btn"
+              onclick="toggleFullscreen()">
+        ⛶
+      </button>
+    </div>
+
+    <div class="setting">
+      <div>
+        <div class="setting-title">Clear history</div>
+        <div class="setting-sub">Delete saved calculations</div>
+      </div>
+
+      <button class="icon-btn"
+              onclick="clearHistory()">
+        🗑
+      </button>
+    </div>
+
+    <div class="setting">
+      <div>
+        <div class="setting-title">About CalX</div>
+        <div class="setting-sub">CalX • Built by Mir Rizwan</div>
+      </div>
+    </div>
+
+    <div class="setting">
+      <div>
+        <div class="setting-title">Version</div>
+        <div class="setting-sub">2.0</div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+</div>
+
+
+<!-- MENU -->
+
+<div class="menu" id="menu">
+
+  <button class="menu-item" onclick="showHistory()">
+    ◷ &nbsp; History
+  </button>
+
+  <button class="menu-item" onclick="showSettings()">
+    ⚙ &nbsp; Settings
+  </button>
 
 </div>
 
 
 <script>
 
-const display = document.getElementById("display");
-const expression = document.getElementById("expression");
-const historyList = document.getElementById("historyList");
+/* =========================
+    CALCULATOR
+========================= */
 
-let history = JSON.parse(
-    localStorage.getItem("calxHistory")  "[]"
-);
+let expression = "";
+let angleMode = "rad";
 
+const resultEl = document.getElementById("result");
+const expressionEl = document.getElementById("expression");
 
-/* DISPLAY */
+function updateDisplay(){
+  expressionEl.textContent = expression;
+  resultEl.textContent = expression  "0";
+}
 
-function appendValue(value) {
+function addValue(value){
 
-    if (display.value === "0" && value !== ".") {
-        display.value = value;
-    } else {
-        display.value += value;
-    }
+  if(expression === "Error"){
+    expression="";
+  }
+
+  expression += value;
+  updateDisplay();
+}
+
+function clearAll(){
+  expression="";
+  expressionEl.textContent="";
+  resultEl.textContent="0";
+}
+
+function backspace(){
+  expression=expression.slice(0,-1);
+  updateDisplay();
+}
+
+function percent(){
+
+  if(!expression) return;
+
+  try{
+    let value=evalExpression(expression);
+    expression=String(value/100);
+    updateDisplay();
+  }catch{
+    resultEl.textContent="Error";
+  }
+}
+
+function calculate(){
+
+  if(!expression) return;
+
+  try{
+
+    const original=expression;
+    const value=evalExpression(expression);
+
+    const formatted=formatNumber(value);
+
+    resultEl.textContent=formatted;
+    expressionEl.textContent=original+" =";
+
+    saveHistory(original,formatted);
+
+    expression=formatted;
+
+  }catch(error){
+
+    resultEl.textContent="Error";
+
+  }
+}
+
+function formatNumber(value){
+
+  if(!Number.isFinite(value)){
+    throw new Error("Invalid");
+  }
+
+  if(Math.abs(value)<1e-12) value=0;
+
+  return Number(value.toPrecision(12)).toString();
 }
 
 
-/* CLEAR */
+/* =========================
+   SAFE EXPRESSION ENGINE
+========================= */
 
-function clearDisplay() {
+function evalExpression(exp){
 
-    display.value = "0";
-    expression.textContent = "";
+  let e=exp;
+
+  e=e.replaceAll("×","*");
+  e=e.replaceAll("÷","/");
+  e=e.replaceAll("−","-");
+  e=e.replaceAll("π",String(Math.PI));
+  e=e.replace(/\be\b/g,String(Math.E));
+  e=e.replace(/\^/g,"**");
+
+  /*
+    Only mathematical characters/operators
+  */
+
+  if(!/^[0-9+\-*/().\s*eE]+$/.test(e)){
+    throw new Error("Invalid expression");
+  }
+
+  /*
+    Function constructor is used only after
+    strict character filtering above.
+  */
+
+  const value=Function('"use strict";return ('+e+')')();
+
+  return value;
 }
 
 
-/* DELETE */
+/* =========================
+   SCIENTIFIC
+========================= */
 
-function deleteLast() {
+function toggleScientific(){
 
-    if (display.value.length <= 1) {
-        display.value = "0";
-    } else {
-        display.value = display.value.slice(0,-1);
-    }
+  document.body.classList.toggle("scientific-mode");
+
+  const active=document.body.classList.contains("scientific-mode");
+
+  document.getElementById("modeBtn").classList.toggle("active",active);
+
 }
 
+function setAngle(mode){
 
-/* PERCENTAGE */
+  angleMode=mode;
 
-function percentage() {
+  document.getElementById("radBtn").classList.toggle(
+    "active",mode==="rad"
+  );
 
-    try {
-
-        const value = Number(
-            Function(
-                '"use strict"; return (' +
-                display.value +
-                ')'
-            )()
-        );
-
-        display.value = value / 100;
-
-    } catch {
-
-        display.value = "Error";
-
-    }
+  document.getElementById("degBtn").classList.toggle(
+    "active",mode==="deg"
+  );
 }
 
+function getAngle(value){
 
-/* CALCULATE */
+  if(angleMode==="deg"){
+    return value*Math.PI/180;
+  }
 
-function calculate() {
-
-    try {
-
-        const original = display.value;
-
-        let result = Function(
-            '"use strict"; return (' +
-            original +
-            ')'
-        )();
-
-        if (!Number.isFinite(result)) {
-            throw new Error();
-        }
-
-        result = Number(
-            Number(result).toPrecision(12)
-        );
-
-        display.value = result;
-
-        expression.textContent = original + " =";
-
-        addHistory(original, result);
-
-    } catch {
-
-        display.value = "Error";
-
-    }
+  return value;
 }
 
+function scientificFunction(type){
 
-/* SCIENTIFIC */
+  try{
 
-function scientific(type) {
+    let value=evalExpression(expression  "0");
+    let result;
 
-    try {
+    switch(type){
 
-        const value = Number(
-            Function(
-                '"use strict"; return (' +
-                display.value +
-                ')'
-            )()
-        );
+      case "sin":
+        result=Math.sin(getAngle(value));
+        break;
 
-        let result;
+      case "cos":
+        result=Math.cos(getAngle(value));
+        break;
 
-        switch(type) {
+      case "tan":
+        result=Math.tan(getAngle(value));
+        break;
 
-            case "sin":
-                result = Math.sin(value * Math.PI / 180);
-                break;
+      case "log":
+        result=Math.log10(value);
+        break;
 
-            case "cos":
-                result = Math.cos(value * Math.PI / 180);
-                break;
+      case "ln":
+        result=Math.log(value);
+        break;
 
-            case "tan":
-                result = Math.tan(value * Math.PI / 180);
-                break;
+      case "sqrt":
+        result=Math.sqrt(value);
+        break;
 
-            case "sqrt":
-                result = Math.sqrt(value);
-                break;
+      case "inv":
+        result=1/value;
+        break;
 
-            case "square":
-                result = value * value;
-                break;
+      case "factorial":
+        result=factorial(value);
+        break;
 
-            case "log":
-                result = Math.log10(value);
-                break;
-
-            case "ln":
-                result = Math.log(value);
-                break;
-
-            case "inverse":
-                result = 1 / value;
-                break;
-
-            case "abs":
-                result = Math.abs(value);
-                break;
-
-            case "factorial":
-
-                if (value < 0  !Number.isInteger(value)) {
-                    throw new Error();
-                }
-
-                result = 1;
-
-                for (let i = 2; i <= value; i++) {
-                    result *= i;
-                }
-
-                break;
-        }
-
-        if (!Number.isFinite(result)) {
-            throw new Error();
-        }
-
-        result = Number(
-            Number(result).toPrecision(12)
-        );
-
-        expression.textContent =
-            type + "(" + value + ") =";
-
-        display.value = result;
-
-        addHistory(
-            type + "(" + value + ")",
-            result
-        );
-
-    } catch {
-
-        display.value = "Error";
-
-    }
-}
-
-
-/* HISTORY */
-
-function addHistory(exp, result) {
-
-    history.unshift({
-        expression: exp,
-        result: result
-    });
-
-    history = history.slice(0, 30);
-
-    localStorage.setItem(
-        "calxHistory",
-        JSON.stringify(history)
-    );
-
-    renderHistory();
-}
-
-
-function renderHistory() {
-
-    if (history.length === 0) {
-
-        historyList.innerHTML =
-            '<div class="empty">No calculations yet</div>';
-
+      default:
         return;
     }
 
-    historyList.innerHTML = history.map(
-        (item,index) => 
+    expression=formatNumber(result);
+    updateDisplay();
 
-        <div
-            class="history-item"
-            onclick="useHistory(${index})">
+  }catch{
 
-            <div class="history-expression">
-                ${item.expression}
-            </div>
+    resultEl.textContent="Error";
 
-            <div class="history-result">
-                = ${item.result}
-            </div>
+  }
+}
 
-        </div>
+function factorial(n){
 
-        
-    ).join("");
+  if(n<0 || !Number.isInteger(n)){
+    throw new Error("Invalid factorial");
+  }
+
+  if(n>170){
+    throw new Error("Too large");
+  }
+
+  let result=1;
+
+  for(let i=2;i<=n;i++){
+    result*=i;
+  }
+
+  return result;
 }
 
 
-function useHistory(index) {
+/* =========================
+   FULLSCREEN
+========================= */
 
-    display.value = history[index].result;
-}
+async function toggleFullscreen(){
 
+  try{
 
-function clearHistory() {
+    if(!document.fullscreenElement){
 
-    history = [];
+      if(document.documentElement.requestFullscreen){
+        await document.documentElement.requestFullscreen();
+      }else{
+        document.body.classList.add("fake-fullscreen");
+      }
+        }else{
 
-    localStorage.removeItem("calxHistory");
-
-    renderHistory();
-}
-
-
-/* THEME */
-
-function toggleTheme() {
-
-    document.body.classList.toggle("light");
-
-    localStorage.setItem(
-        "calxTheme",
-        document.body.classList.contains("light")
-            ? "light"
-            : "dark"
-    );
-}
-
-
-/* LOAD THEME */
-
-if (localStorage.getItem("calxTheme") === "light") {
-    document.body.classList.add("light");
-}
-
-
-/* FULLSCREEN */
-
-function toggleFullscreen() {
-
-    if (!document.fullscreenElement) {
-
-        document.documentElement.requestFullscreen()
-            .catch(() => {});
-
-    } else {
-
-        document.exitFullscreen();
-
-    }
-}
-
-
-/* KEYBOARD */
-
-document.addEventListener("keydown", function(event) {
-
-    const key = event.key;
-
-    if (
-        /[0-9.+\-*/]/.test(key)
-    ) {
-
-        appendValue(key);
+      if(document.exitFullscreen){
+        await document.exitFullscreen();
+      }
 
     }
 
-    else if (key === "Enter") {
+  }catch(error){
 
-        calculate();
-
-    }
-
-    else if (key === "Backspace") {
-
-        deleteLast();
-
-    }
-
-    else if (key === "Escape") {
-
-        clearDisplay();
-
-    }
-
-});
-
-
-renderHistory();
-
-</script>
-
-</body>
-</html>
+    /*
+      Some mobile browse
