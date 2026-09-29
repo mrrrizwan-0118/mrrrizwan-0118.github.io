@@ -670,33 +670,9 @@ footer {
     border-top:
         1px solid rgba(255,255,255,0.07);
 }
-
-
 /* =========================
-   MOBILE
+   HERO — DESKTOP
 ========================= */
-
-@media (max-width: 700px) {
-
-    .nav-container {
-        padding: 14px 18px;
-    }
-.nav-links {
-    gap: 15px;
-    overflow-x: auto;
-    white-space: nowrap;
-    max-width: 72vw;
-    scrollbar-width: none;
-}
-
-.nav-links::-webkit-scrollbar {
-    display: none;
-}
-
-.nav-links a {
-    font-size: 13px;
-    flex-shrink: 0;
-}/* ===== NEW HERO DESIGN ===== */
 
 .hero {
     min-height: 70vh;
@@ -709,51 +685,70 @@ footer {
 .hero-content {
     width: 100%;
     max-width: 1100px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     gap: 70px;
+
     text-align: left;
 }
 
 .hero-text {
     flex: 1;
+    min-width: 0;
 }
 
 .hero .status {
     display: inline-block;
+
     padding: 10px 18px;
     margin-bottom: 20px;
+
     border-radius: 30px;
+
     background: rgba(37, 99, 235, 0.08);
     border: 1px solid rgba(96, 165, 250, 0.18);
+
     color: #60a5fa;
     font-size: 15px;
 }
 
 .hero h1 {
-    font-size: 52px;
+    font-size: clamp(42px, 5vw, 64px);
     line-height: 1.1;
-    margin: 0 0 20px;
+
+    margin-bottom: 20px;
 }
 
 .gradient {
-    background: linear-gradient(90deg, #60a5fa, #2563eb);
+    background: linear-gradient(
+        90deg,
+        #60a5fa,
+        #2563eb
+    );
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .hero-description {
     max-width: 600px;
+
     color: #94a3b8;
+
     font-size: 18px;
     line-height: 1.8;
+
     margin-bottom: 30px;
 }
 
 .hero-buttons {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 14px;
 }
 
@@ -761,24 +756,23 @@ footer {
     margin: 0;
 }
 
-.btn-primary {
-    background: linear-gradient(135deg, #2563eb, #3b82f6);
-}
 
-.btn-outline {
-    background: transparent;
-    border: 1px solid #2563eb;
-}
-
-/* Profile card */
+/* =========================
+   PROFILE CARD
+========================= */
 
 .profile-card {
     width: 300px;
+    flex-shrink: 0;
+
     padding: 30px 25px;
+
     text-align: center;
 
     background: rgba(15, 23, 42, 0.55);
+
     border: 1px solid rgba(96, 165, 250, 0.2);
+
     border-radius: 28px;
 
     backdrop-filter: blur(18px);
@@ -792,16 +786,25 @@ footer {
 
 .profile-card:hover {
     transform: translateY(-8px);
+
     border-color: rgba(96, 165, 250, 0.45);
+
     box-shadow:
         0 25px 70px rgba(0, 0, 0, 0.45),
         0 0 45px rgba(37, 99, 235, 0.2);
 }
 
+
+/* =========================
+   PROFILE PHOTO
+========================= */
+
 .profile-card-photo {
     width: 125px;
     height: 125px;
+
     margin: 0 auto 18px;
+
     padding: 4px;
 
     border-radius: 50%;
@@ -821,58 +824,120 @@ footer {
 .profile-card-photo img {
     width: 100%;
     height: 100%;
+
     object-fit: cover;
+
     border-radius: 50%;
+
     display: block;
 }
 
+
+/* =========================
+   PROFILE TEXT
+========================= */
+
 .profile-card h2 {
     margin: 5px 0 8px;
+
     color: white;
+
     font-size: 24px;
 }
 
 .profile-card p {
     margin: 0 0 25px;
+
     color: #94a3b8;
+
     font-size: 14px;
 }
 
+
+/* =========================
+   PROFILE STATS
+========================= */
+
 .profile-stats {
     display: flex;
+
     justify-content: center;
+
     gap: 25px;
 }
 
 .profile-stats div {
     display: flex;
+
     flex-direction: column;
+
     gap: 5px;
 }
 
 .profile-stats strong {
     color: #60a5fa;
+
     font-size: 20px;
 }
 
 .profile-stats span {
     color: #64748b;
+
     font-size: 12px;
 }
 
-/* Mobile */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media (max-width: 700px) {
 
+    .nav-container {
+        padding: 14px 18px;
+    }
+
+    .nav-links {
+        gap: 15px;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+
+        max-width: 72vw;
+
+        scrollbar-width: none;
+    }
+
+    .nav-links::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+
+        flex-shrink: 0;
+    }
+
+
+    /* HERO */
+
     .hero {
         min-height: auto;
+
         padding: 65px 20px 80px;
     }
 
     .hero-content {
         flex-direction: column;
+
         text-align: center;
+
         gap: 45px;
+    }
+
+    .hero-text {
+        width: 100%;
     }
 
     .hero h1 {
@@ -881,18 +946,23 @@ footer {
 
     .hero-description {
         font-size: 16px;
+
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .hero-buttons {
         justify-content: center;
     }
 
+
+    /* PROFILE CARD */
+
     .profile-card {
         width: min(100%, 320px);
     }
 
 }
-
 </style>
 </head>
 
