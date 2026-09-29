@@ -89,14 +89,30 @@ body::after {
 }
 
 .logo {
-    font-size: 22px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 20px;
     font-weight: 800;
     color: #60a5fa;
 }
+.logo img {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid #3b82f6;
+
+    display: block;
+}
 
 .logo span {
-    color: white;
+    color: #60a5fa;
 }
+
 
 .nav-links {
     display: flex;
@@ -977,9 +993,10 @@ footer {
 
     <div class="nav-container">
 
-        <div class="logo">
-            MR<span>.</span>
-        </div>
+    <div class="logo">
+    <img src="profile.jpg" alt="Mir Rizwan">
+    <span>Mir Rizwan</span>
+</div>    
 
         <div class="nav-links">
 
