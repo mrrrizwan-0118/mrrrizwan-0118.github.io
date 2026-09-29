@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CalX | Mir Rizwan</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: #050816;
+    color: white;
+}
+
+.calculator {
+    width: min(92%, 360px);
+    padding: 22px;
+    border-radius: 25px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(96, 165, 250, 0.2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+h1 {
+    text-align: center;
+    color: #60a5fa;
+    margin-bottom: 18px;
+}
+
+.display {
+    width: 100%;
+    height: 75px;
+    margin-bottom: 18px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #020617;
+    border: 1px solid #1e3a8a;
+    color: white;
+    font-size: 30px;
+    text-align: right;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    height: 60px;
+    border: none;
+    border-radius: 14px;
+    font-size: 20px;
+    color: white;
+    background: #1e293b;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    background: #334155;
+}
+
+.operator {
+    background: #2563eb;
+}
+
+.equal {
+    background: #7c3aed;
+}
+
+.clear {
+    background: #dc2626;
+}
+
+.zero {
+    grid-column: span 2;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+    <h1>CalX</h1>
+
+    <input
+        type="text"
+        class="display"
+        id="display"
+        value="0"
+        readonly
+    >
+
+    <div class="buttons">
+
+        <button class="clear" onclick="clearDisplay()">C</button>
+        <button onclick="deleteLast()">⌫</button>
+        <button onclick="appendValue('%')">%</button>
+        <button class="operator" onclick="appendValue('/')">÷</button>
+
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+        <button class="operator" onclick="appendValue('*')">×</button>
+
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button class="operator" onclick="appendValue('-')">−</button>
+
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+        <button class="operator" onclick="appendValue('+')">+</button>
+
+        <button class="zero" onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+
+    </div>
+
+</div>
+
+<script>
+
+const display = document.getElementById("display");
+
+function appendValue(value) {
+    if (display.value === "0") {
+        display.value = value;
+    } else {
+        display.value += value;
+    }
+}
+
+function clearDisplay() {
+    display.value = "0";
+}
+
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
+
+    if (display.value === "") {
+        display.value = "0";
+    }
+}
+
+function calculate() {
+    try {
+        display.value = Function(
+            '"use strict"; return (' + display.value + ')'
+        )();
+    } catch {
+        display.value = "Error";
+    }
+}
+
+</script>
+
+</body>
+</html>
