@@ -907,7 +907,7 @@ const expressionEl = document.getElementById("expression");
 
 function updateDisplay(){
   expressionEl.textContent = expression;
-  resultEl.textContent = expression  "0";
+resultEl.textContent = expression || "0";  
 }
 
 function addValue(value){
@@ -1055,7 +1055,7 @@ function scientificFunction(type){
 
   try{
 
-    let value=evalExpression(expression  "0");
+    let value=evalExpression(expression || "0");
     let result;
 
     switch(type){
@@ -1141,7 +1141,7 @@ async function toggleFullscreen(){
       }else{
         document.body.classList.add("fake-fullscreen");
       }
-        }else{
+    }else{
 
       if(document.exitFullscreen){
         await document.exitFullscreen();
@@ -1151,5 +1151,11 @@ async function toggleFullscreen(){
 
   }catch(error){
 
-    /*
-      Some mobile browse
+    document.body.classList.remove("fake-fullscreen");
+
+  }
+}
+</script>
+
+</body>
+</html>    
